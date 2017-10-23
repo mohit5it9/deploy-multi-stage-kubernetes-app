@@ -40,7 +40,7 @@ jobs:
       - IN: dmsk_app_gitRepo
         switch: off
       - IN: dmsk_cliConfig
-      - IN:
+      - IN: dmsk_test_deploy
       - TASK:
         # invoke a script that deprovisions the GKE cluster named test-cluster
         # $GKE_CLICONFIG_POINTER_REGION is an environment variable that is automatically created and injected
@@ -54,6 +54,7 @@ jobs:
     steps:
       - IN: dmsk_prod_release_version
       - IN: dmsk_service_def
+      - IN: dmsk_deprovision_test_cluster_job
 
   # Job that Job that deploys to prod environment
   - name: dmsk_prod_deploy
