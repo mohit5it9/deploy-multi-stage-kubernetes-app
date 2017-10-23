@@ -22,7 +22,7 @@ jobs:
         - script: . $DMSK_APP_GITREPO_PATH/gitRepo/provision_gke_cluster.sh dmsk-test-cluster $DMSK_CLICONFIG_POINTER_REGION
 
   # Job that deploys to test environment
-  - name: dmsk_test_deploy
+  - name: dmskTestDeploy
     method: replace
     type: deploy
     steps:
@@ -34,7 +34,7 @@ jobs:
       - IN: dmsk_service_def
 
   # Job that deprovisions the GKE cluster
-  - name: dmsk-deprovision-test-cluster-job
+  - name: dmsk_deprovision_test_cluster_job
     type: runSh
     steps:
       - IN: dmsk_app_gitRepo
@@ -57,7 +57,7 @@ jobs:
       - IN: dmsk_deprovision_test_cluster_job
 
   # Job that Job that deploys to prod environment
-  - name: dmsk-prod-deploy
+  - name: dmskProdDeploy
     method: replace
     type: deploy
     steps:
