@@ -1,0 +1,64 @@
+jobs:
+# jobs for the provision-gke-kubernetes-cluster dmsk
+
+#  Job that creates the application definition
+  - name: dmsk_service_def
+    type: manifest
+    steps:
+     - IN: dmsk_app_image
+     - IN: dmsk_prod_opts
+     - IN: dmsk_prod_env
+
+  # Job that provisions the GKE test cluster
+  - name: dmsk_provision_test_cluster_job
+    type: runSh
+    steps:
+      - IN: dmsk_app_gitRepo
+        # manually trigger the cluster provisioning job and not on every commit to the repository
+        switch: off
+      - IN: dmsk_cliConfig
+      - IN: dmsk_app_trigger
+      - TASK:
+        # invoke a script that provisions the GKE cluster named test-cluster
+        - script: . $DMSK_APP_GITREPO_PATH/gitRepo/provision_gke_cluster.sh dmsk-test-cluster
+
+  # Job that deploys to test environment
+  - name: dmsk_test_deploy
+     type: deploy
+     steps:
+       - IN: dmsk_provision_test_cluster_job
+       - IN: dmsk_test_replicas
+       - IN: dmsk_test_options
+       - IN: dmsk_test_env
+       - IN: dmsk_test_cluster
+       - IN: dmsk_service_def
+
+  # Job that deprovisions the GKE cluster
+  - name: dmsk_deprovision_test_cluster_job
+    type: runSh
+    steps:
+      - IN: dmsk_app_gitRepo
+        switch: off
+      - IN: dmsk_cliConfig
+      - IN:
+      - TASK:
+        # invoke a script that deprovisions the GKE cluster named test-cluster
+        # $GKE_CLICONFIG_POINTER_REGION is an environment variable that is automatically created and injected
+        # by the gke_cliConfig resource and points to the availability zone.
+        - script: . $DMSK_APP_GITREPO_PATH/gitRepo/deprovision_gke_cluster.sh dmsk-test-cluster $DMSK_CLICONFIG_POINTER_REGION
+
+    # Release job
+  - name: dmsk_release
+    type: release
+    bump: minor
+    steps:
+      - IN: dmsk_prod_release_version
+      - IN: dmsk_service_def
+
+  # Job that Job that deploys to prod environment
+  - name: dmsk_prod_deploy
+    type: deploy
+    steps:
+      - IN: dmsk_release
+      - IN: dmsk_prod_cluster
+      - IN: dmsk_prod_replicas

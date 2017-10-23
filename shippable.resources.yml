@@ -1,0 +1,83 @@
+resources:
+# resources for the provision-gke-kubernetes-cluster app
+  - name: dmsk_app_img
+    type: image
+    integration: drship_gcr
+    pointer:
+      sourceName: "gcr.io/devops-recipes/node_app"
+    seed:
+      versionName: "master.1"
+
+  - name: dmsk_test_opts
+    type: dockerOptions
+    version:
+      memory: 1024
+      portMappings:
+        - 80:80
+
+  - name: dmsk_prod_opts
+    type: dockerOptions
+    version:
+      memory: 2048
+      portMappings:
+        - 80:80
+
+  - name: dmsk_test_env
+    type: params
+    version:
+      params:
+        ENVIRONMENT: "test"
+
+  - name: dmsk_prod_env
+    type: params
+    version:
+      params:
+        ENVIRONMENT: "prod"
+
+  - name: dmsk_test_replicas
+    type: replicas
+    version:
+      count: 1
+
+  - name: dmsk_prod_replicas
+    type: replicas
+    version:
+      count: 1
+
+ # Version resource
+ - name: dmsk_prod_release_version
+    type: version
+    seed:
+      versionName: "1.0.0"
+
+  # GitHub repo holding scripts to be used in runsh pipeline job
+  - name: dmsk_app_gitRepo
+    type: gitRepo
+    integration: dr_github # replace with your GitHub integration name
+    pointer:
+      # replace with source code location (e.g. GitHub) where you cloned this
+      # sample project.
+      sourceName: devops-recipes/deploy-multi-stage-kubernetes-app
+      branch: master
+
+  # config for GKE CLI
+  - name: dmsk_cliConfig
+    type: cliConfig
+    integration: drship_gke
+    pointer:
+      region: us-central1-b
+
+  # GKE cluster resources
+  - name: dmsk_test_cluster
+    type: cluster
+    integration: drship_gke    #replace with your Kubernetes integration name
+    pointer:
+      sourceName: "ship-kube-cluster"
+      region: us-central1-b
+
+  - name: dmsk_prod_cluster
+    type: cluster
+    integration: drship_gke    #replace with your Kubernetes integration name
+    pointer:
+      sourceName: "ship-kube-cluster"
+      region: us-central1-b
