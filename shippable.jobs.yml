@@ -19,7 +19,7 @@ jobs:
       - IN: dmsk_app_trigger
       - TASK:
         # invoke a script that provisions the GKE cluster named test-cluster
-        - script: . $DMSK_APP_GITREPO_PATH/gitRepo/provision_gke_cluster.sh dmsk-test-cluster
+        - script: . $DMSK_APP_GITREPO_PATH/gitRepo/provision_gke_cluster.sh dmsk-test-cluster $DMSK_CLICONFIG_POINTER_REGION
 
   # Job that deploys to test environment
   - name: dmsk_test_deploy
