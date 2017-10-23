@@ -74,10 +74,12 @@ resources:
     pointer:
       sourceName: "dmsk-test-cluster"
       region: us-central1-b
+      namespace: "dmsk_test_environment"
 
   - name: dmsk_prod_cluster
     type: cluster
     integration: drship_gke    #replace with your Kubernetes integration name
     pointer:
-      sourceName: "ship-prod-kube-cluster"
-      region: us-central1-b
+      sourceName: "dmsk-prod-cluster"
+      region: us-central1-a
+      namespace: "dmsk_prod_environment"
