@@ -23,6 +23,7 @@ jobs:
 
   # Job that deploys to test environment
   - name: dmsk_test_deploy
+    method: replace
     type: deploy
     steps:
       - IN: dmsk_provision_test_cluster_job
@@ -57,6 +58,7 @@ jobs:
 
   # Job that Job that deploys to prod environment
   - name: dmsk_prod_deploy
+    method: replace
     type: deploy
     steps:
       - IN: dmsk_release
