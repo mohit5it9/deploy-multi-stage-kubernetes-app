@@ -24,14 +24,14 @@ jobs:
 
   # Job that deploys to test environment
   - name: dmsk_test_deploy
-     type: deploy
-     steps:
-       - IN: dmsk_provision_test_cluster_job
-       - IN: dmsk_test_replicas
-       - IN: dmsk_test_options
-       - IN: dmsk_test_env
-       - IN: dmsk_test_cluster
-       - IN: dmsk_service_def
+    type: deploy
+    steps:
+      - IN: dmsk_provision_test_cluster_job
+      - IN: dmsk_test_replicas
+      - IN: dmsk_test_options
+      - IN: dmsk_test_env
+      - IN: dmsk_test_cluster
+      - IN: dmsk_service_def
 
   # Job that deprovisions the GKE cluster
   - name: dmsk_deprovision_test_cluster_job
