@@ -1,6 +1,6 @@
 resources:
 # resources for the provision-gke-kubernetes-cluster app
-  - name: dmsk_app_img1
+  - name: dmsk_app_img
     type: image
     integration: drship_gcr
     pointer:
