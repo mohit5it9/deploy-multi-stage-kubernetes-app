@@ -13,6 +13,7 @@ jobs:
   - name: dmsk_provision_test_cluster_job
     type: runSh
     steps:
+      - IN: dmsk_service_def
       - IN: dmsk_app_gitRepo
       - IN: dmsk_cliConfig
       - IN: dmsk_app_trigger
