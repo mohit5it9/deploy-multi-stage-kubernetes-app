@@ -74,7 +74,7 @@ resources:
     pointer:
       sourceName: "dmsk-test-cluster"
       region: us-central1-b
-      namespace: "dmsk_test_environment"
+      namespace: "dmsk-test-environment"
 
   - name: dmsk_prod_cluster
     type: cluster
@@ -82,4 +82,4 @@ resources:
     pointer:
       sourceName: "dmsk-prod-cluster"
       region: us-central1-a
-      namespace: "dmsk_prod_environment"
+      namespace: "dmsk-prod-environment"
