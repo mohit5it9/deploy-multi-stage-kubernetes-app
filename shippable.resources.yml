@@ -45,7 +45,7 @@ resources:
       count: 1
 
  # Version resource
- - name: dmsk_prod_release_version
+  - name: dmsk_prod_release_version
     type: version
     seed:
       versionName: "1.0.0"
