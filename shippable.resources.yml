@@ -4,7 +4,7 @@ resources:
     type: image
     integration: drship_gcr
     pointer:
-      sourceName: "gcr.io/devops-recipes/node_app"
+      sourceName: "gcr.io/fair-future-183201/node_app"
     seed:
       versionName: "master.1"
 
@@ -72,12 +72,12 @@ resources:
     type: cluster
     integration: drship_gke    #replace with your Kubernetes integration name
     pointer:
-      sourceName: "ship-kube-cluster"
+      sourceName: "ship-test-kube-cluster"
       region: us-central1-b
 
   - name: dmsk_prod_cluster
     type: cluster
     integration: drship_gke    #replace with your Kubernetes integration name
     pointer:
-      sourceName: "ship-kube-cluster"
+      sourceName: "ship-prod-kube-cluster"
       region: us-central1-b
