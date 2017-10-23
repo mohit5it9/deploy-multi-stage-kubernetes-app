@@ -34,7 +34,7 @@ jobs:
       - IN: dmsk_service_def
 
   # Job that deprovisions the GKE cluster
-  - name: dmsk_deprovision_test_cluster_job
+  - name: dmsk-deprovision-test-cluster-job
     type: runSh
     steps:
       - IN: dmsk_app_gitRepo
@@ -57,7 +57,7 @@ jobs:
       - IN: dmsk_deprovision_test_cluster_job
 
   # Job that Job that deploys to prod environment
-  - name: dmsk_prod_deploy
+  - name: dmsk-prod-deploy
     method: replace
     type: deploy
     steps:
