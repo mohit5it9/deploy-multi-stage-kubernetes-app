@@ -5,7 +5,7 @@ jobs:
   - name: dmsk_service_def
     type: manifest
     steps:
-     - IN: dmsk_app_image
+     - IN: dmsk_app_img
      - IN: dmsk_prod_opts
      - IN: dmsk_prod_env
 
@@ -28,7 +28,7 @@ jobs:
     steps:
       - IN: dmsk_provision_test_cluster_job
       - IN: dmsk_test_replicas
-      - IN: dmsk_test_options
+      - IN: dmsk_test_opts
       - IN: dmsk_test_env
       - IN: dmsk_test_cluster
       - IN: dmsk_service_def
