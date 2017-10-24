@@ -35,7 +35,7 @@ jobs:
       - IN: dmsk_service_def
 
   # Job that deprovisions the GKE cluster
-    - name: dmsk_deprovision_test_cluster_job
+  - name: dmsk_deprovision_test_cluster_job
     type: runSh
     steps:
       - IN: dmsk_gitRepo
