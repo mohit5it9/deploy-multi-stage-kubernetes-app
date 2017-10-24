@@ -38,8 +38,6 @@ jobs:
   - name: dmsk_deprovision_test_cluster_job
     type: runSh
     steps:
-      - IN: dmsk_app_gitRepo
-        switch: off
       - IN: dmsk_cliConfig
       - IN: dmskTestDeploy
       - IN: dmsk_test_cluster
@@ -49,7 +47,7 @@ jobs:
         # by the gke_cliConfig resource and points to the availability zone.
         - script: . $DMSK_APP_GITREPO_PATH/gitRepo/deprovision_gke_cluster.sh $DMSK_TEST_CLUSTER_POINTER_SOURCENAME $DMSK_TEST_CLUSTER_POINTER_REGION $DMSK_TEST_CLUSTER_POINTER_NAMESPACE
 
-    # Release job
+  # Release job
   - name: dmsk_release
     type: release
     bump: minor

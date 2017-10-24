@@ -70,7 +70,7 @@ resources:
   # GKE cluster resources
   - name: dmsk_test_cluster
     type: cluster
-    integration: drship_gke    #replace with your Kubernetes integration name
+    integration: drship_gke    #replace with your GKE integration name
     pointer:
       sourceName: "dmsk-test-cluster"
       region: us-central1-b
@@ -78,7 +78,7 @@ resources:
 
   - name: dmsk_prod_cluster
     type: cluster
-    integration: drship_gke    #replace with your Kubernetes integration name
+    integration: drship_gke    #replace with your GKE integration name
     pointer:
       sourceName: "dmsk-prod-cluster"
       region: us-central1-a
