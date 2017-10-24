@@ -1,6 +1,6 @@
 resources:
 # resources for the provision-gke-kubernetes-cluster app
-  - name: dmsk_app_img
+  - name: dmsk_img
     type: image
     integration: drship_gcr
     pointer:
@@ -51,7 +51,7 @@ resources:
       versionName: "1.0.0"
 
   # GitHub repo holding scripts to be used in runsh pipeline job
-  - name: dmsk_app_gitRepo
+  - name: dmsk_gitRepo
     type: gitRepo
     integration: dr_github # replace with your GitHub integration name
     pointer:
