@@ -2,7 +2,7 @@ resources:
 # resources for the provision-gke-kubernetes-cluster app
   - name: dmsk_img
     type: image
-    integration: drship_gcr
+    integration: deploy-multi-stage-kubernetes-app_gcloud    #replace with your Google Cloud integration name
     pointer:
       sourceName: "gcr.io/fair-future-183201/node_app"
     seed:
@@ -63,14 +63,14 @@ resources:
   # config for GKE CLI
   - name: dmsk_cliConfig
     type: cliConfig
-    integration: drship_gke
+    integration: deploy-multi-stage-kubernetes-app_gcloud     #replace with your Google Cloud integration name
     pointer:
       region: us-central1-b
 
   # GKE cluster resources
   - name: dmsk_test_cluster
     type: cluster
-    integration: drship_gke    #replace with your GKE integration name
+    integration: deploy-multi-stage-kubernetes-app_gcloud    #replace with your Google Cloud integration name
     pointer:
       sourceName: "dmsk-test-cluster"
       region: us-central1-b
@@ -78,7 +78,7 @@ resources:
 
   - name: dmsk_prod_cluster
     type: cluster
-    integration: drship_gke    #replace with your GKE integration name
+    integration: deploy-multi-stage-kubernetes-app_gcloud    #replace with your Google Cloud integration name
     pointer:
       sourceName: "dmsk-prod-cluster"
       region: us-central1-a

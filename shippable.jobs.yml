@@ -16,6 +16,8 @@ jobs:
       - IN: dmsk_service_def
       - IN: dmsk_gitRepo
       - IN: dmsk_cliConfig
+        scopes:
+          - gke
       - IN: dmsk_test_cluster
       - IN: dmsk_app_trigger
       - TASK:
@@ -41,6 +43,8 @@ jobs:
       - IN: dmsk_gitRepo
         switch: off
       - IN: dmsk_cliConfig
+        scopes:
+          - gke
       - IN: dmskTestDeploy
       - IN: dmsk_test_cluster
       - TASK:
